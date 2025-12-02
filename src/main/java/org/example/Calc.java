@@ -8,12 +8,20 @@ public class Calc {
     public static int run(String exp) {
 
         exp = exp.replace("- ", "+ -");
-        if(!exp.contains(" ")){
+        //괄호 제거
+        exp = stripOuterBrackets(exp);
+        if (exp.contains("(")){
+            exp = stripOuterBrackets(exp);
+        }
+
+
+        //그냥 숫자만 들어올 경우 바로 리턴
+        if (!exp.contains(" ")) {
             return Integer.parseInt(exp);
         }
 
-        boolean needToPlus = exp.contains("+");
-        boolean needToMultiply = exp.contains("*");
+        boolean needToPlus = exp.contains(" + ");
+        boolean needToMultiply = exp.contains(" * ") || exp.contains(" - ");
         boolean needToCompond = needToPlus && needToMultiply;
 
         String[] bits = null;
@@ -35,7 +43,6 @@ public class Calc {
             return run(newExp);
 
 
-
         }
 
 
@@ -54,6 +61,14 @@ public class Calc {
         }
 
         return sum;
+    }
+
+    private static String stripOuterBrackets(String exp) {
+        if (exp.charAt(0) == '(' && exp.charAt(exp.length() - 1) == ')') {
+            exp = exp.substring(1, exp.length() - 1);
+        }
+
+        return exp;
     }
 }
 
