@@ -13,6 +13,9 @@ public class Calc {
         if (exp.contains("(")){
             exp = stripOuterBrackets(exp);
         }
+        if (exp.contains("(")){
+            exp = stripOuterBrackets(exp);
+        }
 
 
         //그냥 숫자만 들어올 경우 바로 리턴
