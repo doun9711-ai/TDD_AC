@@ -21,7 +21,7 @@ public class Calc {
         if (needToCompond) {
             bits =exp.split(" \\+ ");
 
-            return Integer.parseInt(bits[0]) + run(bits[1]);
+            return Integer.parseInt(bits[0]) + Integer.parseInt(bits[1]) + run(bits[2]);
         }
 
 
