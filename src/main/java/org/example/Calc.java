@@ -1,10 +1,16 @@
 package org.example;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 public class Calc {
 
     public static int run(String exp) {
 
         exp = exp.replace("- ", "+ -");
+        if(!exp.contains(" ")){
+            return Integer.parseInt(exp);
+        }
 
         boolean needToPlus = exp.contains("+");
         boolean needToMultiply = exp.contains("*");
@@ -19,9 +25,17 @@ public class Calc {
             bits = exp.split(" \\* ");
         }
         if (needToCompond) {
-            bits =exp.split(" \\+ ");
+            bits = exp.split(" \\+ ");
 
-            return Integer.parseInt(bits[0]) + Integer.parseInt(bits[1]) + run(bits[2]);
+
+            String newExp = Arrays.stream(bits)
+                    .mapToInt(Calc::run)
+                    .mapToObj(e -> e + "")
+                    .collect(Collectors.joining(" + "));
+            return run(newExp);
+
+
+
         }
 
 
