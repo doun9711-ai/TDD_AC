@@ -13,22 +13,22 @@ public class Calc {
 
         if (needToPlus) {
             bits = exp.split(" \\+ ");
-        }
-        else if  (needToMultiply) {
+        } else if (needToMultiply) {
             bits = exp.split(" \\* ");
         }
 
-
-
         int sum = 0;
-        for ( int i = 0; i < bits.length; i++) {
+        for (int i = 0; i < bits.length; i++) {
             sum = sum + Integer.parseInt(bits[i]);
         }
-        if (needToMultiply){
-            int a = Integer.parseInt(bits[0]);
-            int b = Integer.parseInt(bits[1]);
-            int c = Integer.parseInt(bits[2]);
-            return a*b*c;
+        if (needToMultiply) {
+            int sum2 = 1;
+            for (int i = 0; i < bits.length; i++) {
+                sum2 = sum2 * Integer.parseInt(bits[i]);
+
+            }
+            return sum2;
+
         }
 
         return sum;
